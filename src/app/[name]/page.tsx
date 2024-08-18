@@ -1,14 +1,26 @@
-import Link from "next/link";
-import { GET } from "../api/verbs/[name]/route";
-import { SquareArrowLeft01Icon } from "../icons/icons";
+"use client";
 
-export default async function VerbDetails({
-  params,
-}: {
-  params: { name: string };
-}) {
+import Link from "next/link";
+import { SquareArrowLeft01Icon } from "../icons/icons";
+import React, { useEffect, useState } from "react";
+import { Verb } from "../types/verb";
+
+export default function VerbDetails({ params }: { params: { name: string } }) {
   const { name } = params;
-  const verb = await GET({ name });
+  const [verb, setVerb] = useState<Verb | null>(null);
+
+  useEffect(() => {
+    const fetchVerb = async () => {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/verbs/${name}`
+      );
+      const data = await response.json();
+      console.log(data);
+      setVerb(data);
+    };
+
+    fetchVerb();
+  }, [name]);
 
   return (
     <>

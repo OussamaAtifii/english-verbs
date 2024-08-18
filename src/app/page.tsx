@@ -1,8 +1,8 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import Card from "./components/card";
 import { aclonica } from "./fonts/fonts";
-import { GET } from "./api/verbs/route";
 import { VerbName } from "./types/verb";
 
 export default function Home() {
@@ -12,11 +12,12 @@ export default function Home() {
 
   useEffect(() => {
     const fetchVerbs = async () => {
-      const verbsNames = await GET();
-      if (verbsNames && Array.isArray(verbsNames)) {
-        setVerbs(verbsNames);
-        setVerbsFiltered(verbsNames);
-      }
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/verbs`
+      );
+      const data = await response.json();
+      setVerbs(data);
+      setVerbsFiltered(data);
     };
 
     fetchVerbs();
