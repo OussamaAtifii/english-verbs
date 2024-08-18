@@ -11,9 +11,7 @@ export default function VerbDetails({ params }: { params: { name: string } }) {
 
   useEffect(() => {
     const fetchVerb = async () => {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/verbs/${name}`
-      );
+      const response = await fetch(`/api/verbs/${name}`);
       const data = await response.json();
       console.log(data);
       setVerb(data);

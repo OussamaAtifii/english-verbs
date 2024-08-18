@@ -12,9 +12,7 @@ export default function Home() {
 
   useEffect(() => {
     const fetchVerbs = async () => {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/verbs`
-      );
+      const response = await fetch(`/api/verbs`);
       const data = await response.json();
       setVerbs(data);
       setVerbsFiltered(data);
