@@ -14,6 +14,21 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
     },
+    colors: {
+      "jelly-bean": {
+        "50": "#eefbfd",
+        "100": "#d4f4f9",
+        "200": "#aee7f3",
+        "300": "#76d4ea",
+        "400": "#38b8d8",
+        "500": "#1c9cbe",
+        "600": "#1a7da0",
+        "700": "#1c6582",
+        "800": "#1f546b",
+        "900": "#1e465b",
+        "950": "#0e2d3e",
+      },
+    },
   },
   plugins: [],
 };
