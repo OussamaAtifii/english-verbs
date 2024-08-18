@@ -4,3 +4,7 @@ export interface Verb {
   pastParticiple: string;
   meaning: string[];
 }
+
+export interface VerbName {
+  name: string;
+}

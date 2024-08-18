@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { Verb } from "../types/verb";
+import { VerbName } from "../types/verb";
 
-export default function Card({ verb }: { verb: Verb }) {
+export default function Card({ verb }: { verb: VerbName }) {
   return (
     <Link
       href={`${verb.name.toLowerCase()}`}

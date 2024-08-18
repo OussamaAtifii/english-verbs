@@ -1,70 +1,28 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "./components/card";
+import { aclonica } from "./fonts/fonts";
+import { GET } from "./api/verbs/route";
+import { VerbName } from "./types/verb";
 
 export default function Home() {
-  const verbs = [
-    {
-      name: "Arise",
-      past: "Arose",
-      pastParticiple: "Arisen",
-      meaning: ["Levantarse", "Surgir"],
-    },
-    {
-      name: "Awake",
-      past: "Awoke",
-      pastParticiple: "Awoken",
-      meaning: ["Despertar(se)"],
-    },
-    {
-      name: "Be / Am / Is / Are",
-      past: "Was / Were",
-      pastParticiple: "Been",
-      meaning: ["Ser", "Estar"],
-    },
-    {
-      name: "Bear",
-      past: "Bore",
-      pastParticiple: "Born",
-      meaning: ["Soportar", "Dar a luz"],
-    },
-    {
-      name: "Beat",
-      past: "Beat",
-      pastParticiple: "Beaten",
-      meaning: ["Golpear"],
-    },
-    {
-      name: "Become",
-      past: "Became",
-      pastParticiple: "Become",
-      meaning: ["Llegar a ser"],
-    },
-    {
-      name: "Begin",
-      past: "Began",
-      pastParticiple: "Begun",
-      meaning: ["Empezar"],
-    },
-    {
-      name: "Bend",
-      past: "Bent",
-      pastParticiple: "Bent",
-      meaning: ["Doblar"],
-    },
-    {
-      name: "Bet",
-      past: "Bet",
-      pastParticiple: "Bet",
-      meaning: ["Apostar"],
-    },
-  ];
-
+  const [verbs, setVerbs] = useState<VerbName[]>([]);
   const [verbToSearch, setVerbToSearch] = useState("");
-  const [verbsFiltered, setVerbsFiltered] = useState(verbs);
+  const [verbsFiltered, setVerbsFiltered] = useState<VerbName[]>(verbs);
+
+  useEffect(() => {
+    const fetchVerbs = async () => {
+      const verbsNames = await GET();
+      if (verbsNames && Array.isArray(verbsNames)) {
+        setVerbs(verbsNames);
+        setVerbsFiltered(verbsNames);
+      }
+    };
+
+    fetchVerbs();
+  }, []);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
     setVerbToSearch(e.target.value);
 
     const filtered = verbs.filter((verb) =>
@@ -75,8 +33,15 @@ export default function Home() {
   };
 
   return (
-    <main className="flex flex-col gap-6">
-      <h1 className="text-4xl font-extrabold text-center">Irregular Verbs</h1>
+    <main className="flex flex-col gap-10">
+      <div
+        className={`${aclonica.className} flex gap-4 justify-center items-center text-4xl text-center pt-10`}
+      >
+        <h1 className="-rotate-12 font-extrabold underline bg-amber-400 p-2">
+          Irregular
+        </h1>
+        <span className="-inset-0 underline">Verbs</span>
+      </div>
       <input
         type="text"
         placeholder="Introduce el verbo"
