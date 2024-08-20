@@ -22,7 +22,7 @@ export default function VerbDetails({ params }: { params: { name: string } }) {
 
   return (
     <>
-      <div className="flex flex-col justify-between min-h-[100dvh] p-4">
+      <div className="flex flex-col justify-between min-h-[100dvh]">
         <div className="flex flex-col gap-8 items-center">
           {/* Encabezado con el nombre del verbo */}
           <h1 className="text-4xl font-bold text-jelly-bean-950 uppercase underline">

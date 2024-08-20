@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={`${inter.className} min-h-screen max-w-sm mx-auto`}>
+      <body className={`${inter.className} min-h-[100dvh] mx-auto p-4`}>
         {children}
       </body>
     </html>
