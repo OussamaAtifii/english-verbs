@@ -15,7 +15,7 @@ const config: Config = {
       },
     },
     colors: {
-      "jelly-bean": {
+      jellybean: {
         "50": "#eefbfd",
         "100": "#d4f4f9",
         "200": "#aee7f3",
