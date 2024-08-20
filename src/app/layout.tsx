@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
+import { aleo } from "./fonts/fonts";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={`${inter.className} min-h-[100dvh] mx-auto p-4`}>
+      <body className={`${aleo.className} min-h-[100dvh] mx-auto`}>
         {children}
       </body>
     </html>

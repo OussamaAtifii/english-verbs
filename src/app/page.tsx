@@ -32,28 +32,20 @@ export default function Home() {
   };
 
   return (
-    <main className="flex flex-col gap-10">
-      <div
-        className={`${aclonica.className} flex gap-4 justify-center items-center text-4xl text-center pt-10`}
-      >
-        <h1 className="-rotate-12 font-extrabold underline bg-amber-400 p-2">
-          Irregular
-        </h1>
-        <span className="-inset-0 underline">Verbs</span>
-      </div>
+    <main className="flex flex-col gap-8 p-6 bg-gray-100 min-h-screen">
       <input
         type="text"
-        placeholder="Introduce el verbo"
-        className="border w-full p-4"
+        placeholder="Buscar un verbo"
+        className="border border-gray-300 rounded-lg w-full p-4 shadow-md focus:outline-none"
         onChange={handleSearch}
       />
       {verbsFiltered.length < 1 ? (
-        <p className="text-center">
+        <p className="text-center text-gray-700">
           No se encontraron resultados para{" "}
-          <span className="font-bold">{verbToSearch}</span>
+          <span className="font-semibold">{verbToSearch}</span>
         </p>
       ) : (
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 gap-4">
           {verbsFiltered.map((verb) => (
             <Card verb={verb} key={verb.name} />
           ))}

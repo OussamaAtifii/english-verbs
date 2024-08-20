@@ -14,7 +14,7 @@ export const verbs: Verb[] = [
     meaning: ["Despertar(se)"],
   },
   {
-    name: "Be / Am / Is / Are",
+    name: "Be",
     past: "Was / Were",
     pastParticiple: "Been",
     meaning: ["Ser", "Estar"],
