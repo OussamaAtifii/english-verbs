@@ -2,24 +2,40 @@
 
 import React, { useEffect, useState } from "react";
 import Card from "./components/card";
-import { aclonica } from "./fonts/fonts";
-import { VerbName } from "./types/verb";
+import { Verb } from "./types/verb";
+import { ArrowUp } from "./icons/icons";
 
 export default function Home() {
-  const [verbs, setVerbs] = useState<VerbName[]>([]);
+  const [verbs, setVerbs] = useState<Verb[]>([]);
   const [verbToSearch, setVerbToSearch] = useState("");
-  const [verbsFiltered, setVerbsFiltered] = useState<VerbName[]>(verbs);
+  const [verbsFiltered, setVerbsFiltered] = useState<Verb[]>(verbs);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const fetchVerbs = async () => {
-      const response = await fetch(`/api/verbs`);
+      const response = await fetch(`/api/verbs?quantity=true`);
       const data = await response.json();
+      console.log(data);
       setVerbs(data);
       setVerbsFiltered(data);
     };
 
     fetchVerbs();
   }, []);
+
+  const toggleVisibility = () => {
+    if (window.scrollY > 100) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", toggleVisibility);
+
+    return () => window.removeEventListener("scroll", toggleVisibility);
+  });
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setVerbToSearch(e.target.value);
@@ -31,8 +47,15 @@ export default function Home() {
     setVerbsFiltered(filtered);
   };
 
+  const scrrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <main className="flex flex-col gap-8 p-6 bg-gray-100 min-h-screen">
+    <main className="flex flex-col gap-8 p-6 bg-gray-100 min-h-screen min-w-[100vw]">
       <input
         type="text"
         placeholder="Buscar un verbo"
@@ -45,11 +68,20 @@ export default function Home() {
           <span className="font-semibold">{verbToSearch}</span>
         </p>
       ) : (
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-6">
           {verbsFiltered.map((verb) => (
             <Card verb={verb} key={verb.name} />
           ))}
         </div>
+      )}
+
+      {isVisible && (
+        <button
+          className="fixed bottom-4 right-4 border border-jellybean-600 p-4 bg-jellybean-100 rounded-md z-10"
+          onClick={scrrollToTop}
+        >
+          <ArrowUp />
+        </button>
       )}
     </main>
   );

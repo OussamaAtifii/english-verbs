@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import { aleo } from "./fonts/fonts";
+import NavBar from "./components/nav";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,6 +20,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${aleo.className} min-h-[100dvh] mx-auto`}>
+        <NavBar />
         {children}
       </body>
     </html>
