@@ -4,20 +4,23 @@ import React, { useEffect, useState } from "react";
 import Card from "./components/card";
 import { Verb } from "./types/verb";
 import { ArrowUp } from "./icons/icons";
+import HomeSkeleton from "./components/HomeSkeleton";
 
 export default function Home() {
   const [verbs, setVerbs] = useState<Verb[]>([]);
   const [verbToSearch, setVerbToSearch] = useState("");
   const [verbsFiltered, setVerbsFiltered] = useState<Verb[]>(verbs);
   const [isVisible, setIsVisible] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchVerbs = async () => {
       const response = await fetch(`/api/verbs?quantity=true`);
       const data = await response.json();
-      console.log(data);
+
       setVerbs(data);
       setVerbsFiltered(data);
+      setLoading(false);
     };
 
     fetchVerbs();
@@ -54,8 +57,10 @@ export default function Home() {
     });
   };
 
-  return (
-    <main className="flex flex-col gap-8 p-6 bg-gray-100 min-h-screen min-w-[100vw]">
+  return loading ? (
+    <HomeSkeleton />
+  ) : (
+    <main className="flex flex-col gap-6 p-6 bg-gray-100 min-h-screen min-w-[100vw]">
       <input
         type="text"
         placeholder="Buscar un verbo"
