@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
   if (quantity == "true") {
     let quantityVerbs = [] as Verb[];
 
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 30; i++) {
       let randomIndex = Math.floor(Math.random() * verbs.length);
 
       while (quantityVerbs.includes(verbs[randomIndex])) {
