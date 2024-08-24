@@ -3,8 +3,9 @@
 import React, { useEffect, useState } from "react";
 import Card from "./components/card";
 import { Verb } from "./types/verb";
-import { ArrowUp } from "./icons/icons";
+import { Alert02Icon, ArrowUp, SearchCircleIcon } from "./icons/icons";
 import HomeSkeleton from "./components/HomeSkeleton";
+import Footer from "./components/Footer";
 
 export default function Home() {
   const [verbs, setVerbs] = useState<Verb[]>([]);
@@ -27,7 +28,7 @@ export default function Home() {
   }, []);
 
   const toggleVisibility = () => {
-    if (window.scrollY > 100) {
+    if (window.scrollY > 300) {
       setIsVisible(true);
     } else {
       setIsVisible(false);
@@ -60,34 +61,48 @@ export default function Home() {
   return loading ? (
     <HomeSkeleton />
   ) : (
-    <main className="flex flex-col gap-6 p-6 bg-gray-100 min-h-screen min-w-[100vw]">
-      <input
-        type="text"
-        placeholder="Buscar un verbo"
-        className="border border-gray-300 rounded-lg w-full p-4 shadow-md focus:outline-none"
-        onChange={handleSearch}
-      />
-      {verbsFiltered.length < 1 ? (
-        <p className="text-center text-gray-700">
-          No se encontraron resultados para{" "}
-          <span className="font-semibold">{verbToSearch}</span>
-        </p>
-      ) : (
-        <div className="grid grid-cols-2 gap-6">
-          {verbsFiltered.map((verb) => (
-            <Card verb={verb} key={verb.name} />
-          ))}
+    <div className="flex flex-col min-h-screen">
+      <main className="flex-grow p-6 bg-gray-100">
+        <div className="relative mb-6">
+          <span className="absolute inset-y-0 left-0 flex items-center pl-3 pr-2">
+            <SearchCircleIcon className="text-gray-400" />
+          </span>
+          <input
+            type="text"
+            placeholder="Busca un verbo"
+            className="border border-gray-300 rounded-lg w-full p-4 pl-12 shadow-md focus:outline-none placeholder:text-lg"
+            onChange={handleSearch}
+          />
         </div>
-      )}
 
-      {isVisible && (
-        <button
-          className="fixed bottom-4 right-4 border border-jellybean-600 p-4 bg-jellybean-100 rounded-md z-10"
-          onClick={scrrollToTop}
-        >
-          <ArrowUp />
-        </button>
-      )}
-    </main>
+        {verbsFiltered.length < 1 ? (
+          <div className="flex flex-col justify-center items-center gap-2">
+            <div className="rounded-full p-2 bg-red-200 flex items-center w-10">
+              <Alert02Icon />
+            </div>
+            <p className="text-center text-gray-700">
+              No se encontraron resultados para{" "}
+              <span className="font-bold">{verbToSearch}</span>
+            </p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 gap-6">
+            {verbsFiltered.map((verb) => (
+              <Card verb={verb} key={verb.name} />
+            ))}
+          </div>
+        )}
+
+        {isVisible && (
+          <button
+            className="fixed bottom-4 right-4 p-4 shadow-md bg-white rounded-full z-10"
+            onClick={scrrollToTop}
+          >
+            <ArrowUp />
+          </button>
+        )}
+      </main>
+      <Footer />
+    </div>
   );
 }

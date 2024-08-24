@@ -4,10 +4,10 @@ import { VerbName } from "../types/verb";
 export default function Card({ verb }: { verb: VerbName }) {
   return (
     <Link
-      href={`${verb.name.toLowerCase()}`}
-      className="h-[82px] border border-jellybean-600 bg-jellybean-200 shadow-lg rounded-lg flex justify-center items-center"
+      href={`/${verb.name.toLowerCase()}`}
+      className="h-20 border-2 border-jellybean-700 bg-jellybean-50 shadow-sm rounded-md flex justify-center items-center"
     >
-      <p className="font-bold text-lg text-gray-800">{verb.name}</p>
+      <p className="font-semibold text-xl text-gray-700">{verb.name}</p>
     </Link>
   );
 }

@@ -19,7 +19,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={`${aleo.className} min-h-[100dvh] mx-auto`}>
+      <body
+        className={`${aleo.className} min-h-[100dvh] mx-auto max-w-[440px]`}
+      >
         <NavBar />
         {children}
       </body>

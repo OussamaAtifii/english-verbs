@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import VerbData from "../components/verb/VerbData";
+import VerbData from "../components/verbs/VerbData";
 import { Verb } from "../types/verb";
-import VerbSkeleton from "../components/verb/VerbSkeleton";
+import VerbSkeleton from "../components/verbs/VerbSkeleton";
 
 export default function VerbDetails({ params }: { params: { name: string } }) {
   const { name } = params;
