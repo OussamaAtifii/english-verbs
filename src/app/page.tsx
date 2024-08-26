@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 
 export default function Home() {
   const [verbs, setVerbs] = useState<Verb[]>([]);
+  const [allVerbs, setAllVerbs] = useState<Verb[]>([]);
   const [verbToSearch, setVerbToSearch] = useState("");
   const [verbsFiltered, setVerbsFiltered] = useState<Verb[]>(verbs);
   const [isVisible, setIsVisible] = useState(false);
@@ -17,9 +18,12 @@ export default function Home() {
   useEffect(() => {
     const fetchVerbs = async () => {
       const response = await fetch(`/api/verbs?quantity=true`);
+      const responseAllVerbs = await fetch(`/api/verbs`);
       const data = await response.json();
+      const dataAllVerbs = await responseAllVerbs.json();
 
       setVerbs(data);
+      setAllVerbs(dataAllVerbs);
       setVerbsFiltered(data);
       setLoading(false);
     };
@@ -44,7 +48,9 @@ export default function Home() {
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setVerbToSearch(e.target.value);
 
-    const filtered = verbs.filter((verb) =>
+    if (e.target.value === "") return setVerbsFiltered(verbs);
+
+    const filtered = allVerbs.filter((verb) =>
       verb.name.toLowerCase().includes(e.target.value.toLowerCase())
     );
 
