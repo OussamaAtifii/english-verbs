@@ -91,6 +91,7 @@ export default function PastSimpleQuiz() {
       <h1>{questions[currentQuestion].question}</h1>
       {questions[currentQuestion].options.map((option) => (
         <button
+          key={option}
           className="bg-gray-200 text-gray-700 py-4 px-8 rounded-md"
           onClick={() =>
             handleAnswer(option === questions[currentQuestion].correctAnswer)
