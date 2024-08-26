@@ -22,5 +22,5 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(quantityVerbs);
   }
 
-  return Response.json(verbs);
+  return NextResponse.json(verbs);
 }
