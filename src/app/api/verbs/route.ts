@@ -19,6 +19,18 @@ export async function GET(request: NextRequest) {
       quantityVerbs.push(verbs[randomIndex]);
     }
 
+    quantityVerbs.sort((a, b) => {
+      if (a.name < b.name) {
+        return -1;
+      }
+
+      if (a.name > b.name) {
+        return 1;
+      }
+
+      return 0;
+    });
+
     return NextResponse.json(quantityVerbs);
   }
 
