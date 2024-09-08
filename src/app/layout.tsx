@@ -1,11 +1,7 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-import Link from "next/link";
 import { aleo } from "./fonts/fonts";
 import NavBar from "./components/nav";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Irregular Verbs",
@@ -18,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
+    <html lang="es" data-theme="light">
       <body
         className={`${aleo.className} min-h-[100dvh] mx-auto max-w-[440px]`}
       >
