@@ -15,10 +15,10 @@ export default function NavLink({
   return (
     <Link
       href={href}
-      className={`py-2 px-3 rounded flex gap-2 items-center ${
+      className={`py-3 px-4 rounded flex gap-2 items-center transition-colors duration-200 ${
         pathname === href
-          ? "bg-jellybean-500 text-white font-semibold"
-          : "text-black"
+          ? "bg-jellybean-300 text-black"
+          : "text-gray-700 hover:bg-gray-200"
       }`}
     >
       {icon} {name}
