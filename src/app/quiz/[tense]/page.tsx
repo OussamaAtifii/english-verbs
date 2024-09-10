@@ -1,12 +1,18 @@
+import { ArrowRight } from "@/app/icons/icons";
 import Link from "next/link";
-import { ArrowRight } from "../icons/icons";
 
-export default function QuizPage() {
+export default function QuizTensePage({
+  params,
+}: {
+  params: { tense: string };
+}) {
   return (
     <>
       <div className="p-6 max-w-lg mx-auto">
         <div className="text-center mb-6">
-          <h1 className="text-3xl font-extrabold text-gray-800">Quiz</h1>
+          <h1 className="text-3xl font-extrabold text-gray-800">
+            {params.tense} Quiz
+          </h1>
           <p className="text-gray-600">Test your knowledge with this quiz!</p>
         </div>
 
@@ -14,11 +20,11 @@ export default function QuizPage() {
           <div className="card card-compact bg-gray-100 shadow-md">
             <div className="card-body flex flex-row justify-between">
               <div>
-                <h2 className="card-title">Present Simple Quiz</h2>
+                <h2 className="card-title">Easy Quiz</h2>
                 <p className="text-sm text-gray-500">10 Questions</p>
               </div>
               <Link
-                href="/quiz/present_simple"
+                href={`/quiz/${params.tense}/easy`}
                 className="btn bg-jellybean-500 hover:bg-jellybean-600 text-white"
               >
                 <p className="text-base">Go!</p>
