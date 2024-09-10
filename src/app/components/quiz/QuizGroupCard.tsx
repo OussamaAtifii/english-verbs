@@ -1,13 +1,15 @@
 import { ArrowRight } from "@/app/icons/icons";
 import Link from "next/link";
 
-export default function QuizCard({
+export default function QuizGroupCard({
   name,
   tense,
+  difficulty,
   questQuantity,
 }: {
   name: string;
   tense: string;
+  difficulty: string;
   questQuantity: number;
 }) {
   return (
@@ -18,10 +20,10 @@ export default function QuizCard({
       </div>
       <Link
         // TODO: Add quiz href
-        href={`/quiz/${tense}`}
+        href={`/quiz/${tense}/${difficulty}`}
         className="flex items-center gap-2 bg-jellybean-500 text-white px-5 py-2 rounded-md"
       >
-        Start <ArrowRight />
+        Go! <ArrowRight />
       </Link>
     </div>
   );
