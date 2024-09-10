@@ -1,10 +1,12 @@
+import { getAllVerbs } from "@/app/db/queries/verbs/select";
 import { NextRequest, NextResponse } from "next/server";
-import { verbs } from "../data";
 
 export async function GET(
   request: NextRequest,
   { params }: { params: { name: string } }
 ) {
+  const verbs = await getAllVerbs();
+
   const verb = verbs.find(
     (verb) => verb.name.toLowerCase() === params.name.toLowerCase().trim()
   );
