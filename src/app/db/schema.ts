@@ -10,3 +10,15 @@ export const verbsTable = sqliteTable("verbs", {
 
 export type InsertVerb = typeof verbsTable.$inferInsert;
 export type SelectVerb = typeof verbsTable.$inferSelect;
+
+export const questionsTable = sqliteTable("questions", {
+  id: integer("id").primaryKey(),
+  question: text("question").notNull(),
+  options: text("options").notNull(),
+  correctAnswer: text("correct_answer").notNull(),
+  difficulty: text("difficulty").notNull(),
+  tense: text("tense").notNull(),
+});
+
+export type InsertQuestion = typeof questionsTable.$inferInsert;
+export type SelectQuestion = typeof questionsTable.$inferSelect;
