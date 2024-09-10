@@ -1,13 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
-import { verbs } from "./data";
-import { Verb } from "@/app/types/verb";
+import { getAllVerbs } from "@/app/db/queries/verbs/select";
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const quantity = searchParams.get("quantity");
 
+  const verbs = await getAllVerbs();
+
   if (quantity == "true") {
-    let quantityVerbs = [] as Verb[];
+    let quantityVerbs = [] as any[];
 
     for (let i = 0; i < 30; i++) {
       let randomIndex = Math.floor(Math.random() * verbs.length);
