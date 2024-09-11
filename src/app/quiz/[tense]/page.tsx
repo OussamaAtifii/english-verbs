@@ -17,10 +17,49 @@ export default function QuizTensePage({
         </div>
 
         <div className="flex flex-col gap-6">
-          <div className="card card-compact bg-gray-100 shadow-md">
+          <div
+            className="card card-compact bg-gray-100 shadow-md card-animate"
+            style={{ animationDelay: "0ms" }}
+          >
             <div className="card-body flex flex-row justify-between">
               <div>
                 <h2 className="card-title">Easy Quiz</h2>
+                <p className="text-sm text-gray-500">10 Questions</p>
+              </div>
+              <Link
+                href={`/quiz/${params.tense}/easy`}
+                className="btn bg-jellybean-500 hover:bg-jellybean-600 text-white"
+              >
+                <p className="text-base">Go!</p>
+                <ArrowRight />
+              </Link>
+            </div>
+          </div>
+          <div
+            className="card card-compact bg-gray-100 shadow-md card-animate"
+            style={{ animationDelay: "150ms" }}
+          >
+            <div className="card-body flex flex-row justify-between">
+              <div>
+                <h2 className="card-title">Medium Quiz</h2>
+                <p className="text-sm text-gray-500">10 Questions</p>
+              </div>
+              <Link
+                href={`/quiz/${params.tense}/easy`}
+                className="btn bg-jellybean-500 hover:bg-jellybean-600 text-white"
+              >
+                <p className="text-base">Go!</p>
+                <ArrowRight />
+              </Link>
+            </div>
+          </div>
+          <div
+            className="card card-compact bg-gray-100 shadow-md card-animate"
+            style={{ animationDelay: "300ms" }}
+          >
+            <div className="card-body flex flex-row justify-between">
+              <div>
+                <h2 className="card-title">Hard Quiz</h2>
                 <p className="text-sm text-gray-500">10 Questions</p>
               </div>
               <Link
