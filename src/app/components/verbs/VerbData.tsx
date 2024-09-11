@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { SquareArrowLeft01Icon } from "../../icons/icons";
-import { Verb } from "../../types/verb";
 
-export default function VerbData({ verb }: { verb: Verb | null }) {
+export default function VerbData({ verb }: { verb: any | null }) {
   return (
     <>
       <div className="flex flex-col justify-between min-h-[calc(100dvh-89.45px)] p-6 bg">
@@ -34,7 +33,7 @@ export default function VerbData({ verb }: { verb: Verb | null }) {
               Significado/s
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              {verb?.meaning.map((mean) => (
+              {JSON.parse(verb?.meaning).map((mean: string) => (
                 <div
                   className="bg-white shadow-lg rounded-xl p-4 border-l-4 border-jellybean-500"
                   key={mean}
